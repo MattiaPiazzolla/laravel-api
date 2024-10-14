@@ -20,3 +20,5 @@ use App\Http\Controllers\Api\ProjectController as ProjectController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/index', [ProjectController::class, 'home'])->name('project_home');

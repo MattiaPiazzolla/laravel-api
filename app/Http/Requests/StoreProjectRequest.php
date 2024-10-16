@@ -27,7 +27,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'summary' => 'nullable|string',
-            'project_image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'project_image' => 'nullable|image|max:2048',
             'category_id' => ['nullable', Rule::exists('categories', 'id')], 
         ];
     }
@@ -43,7 +43,6 @@ class StoreProjectRequest extends FormRequest
             'name.required' => 'Il nome del progetto è obbligatorio.',
             'name.max' => 'Il nome del progetto non può superare i 100 caratteri.',
             'project_image.image' => 'Il file deve essere un\'immagine valida.',
-            'project_image.mimes' => 'L\'immagine deve essere nei formati: jpg, jpeg o png.',
             'project_image.max' => 'L\'immagine non può superare i 2MB.',
             'category_id.exists' => 'La categoria selezionata non è valida.',
         ];

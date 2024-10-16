@@ -13,10 +13,27 @@ class ProjectController extends Controller
     public function index()
     {
         // $projects = Project::all();
-        $projects = Project::with('category', 'technology')->paginate(6);
+        $projects = Project::with('category','technologies')->paginate(6);
         return response()->json([
             'success' =>true,
             'results'=> $projects,
+        ]);
+    }
+
+    public function show($slug)
+    {
+        // recupero il progetto avente un determinato slug 
+        $project = Project::with('category','technologies')->where('slug', $slug)->get();
+        // verifico che il post non sia null
+        if ($project) {
+            return response()->json([
+                'success' =>true,
+                'results'=> $project,
+            ]);
+            
+        }
+        return response()->json([
+            'success' =>false,
         ]);
     }
 }

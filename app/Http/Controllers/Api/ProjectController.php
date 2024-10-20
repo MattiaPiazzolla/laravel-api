@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function projects()
     {
         // $projects = Project::all();
         $projects = Project::with('category','technologies')->paginate(6);
@@ -23,7 +23,7 @@ class ProjectController extends Controller
     public function show($slug)
     {
         // recupero il progetto avente un determinato slug 
-        $project = Project::with('category','technologies')->where('slug', $slug)->get();
+        $project = Project::with('category','technologies')->where('slug', $slug)->first();
         // verifico che il post non sia null
         if ($project) {
             return response()->json([
